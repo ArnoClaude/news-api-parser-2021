@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Arno Claude News API Parser</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="jumbotron">
+        <h1 class="display-4">Arno Claude News API Parser</h1>
+        <p class="lead">This is a sample project by <em>Arno Claude</em> to demonstrate how to communicate with an API,
+            handle the JSON data and display it, using the Java framework Spring.</p>
+        <hr class="my-4">
+        <a class="btn btn-primary btn-lg" href="https://newsapi.org/" role="button" target="_blank">Go to
+            newsapi.org</a>
+    </div>
+
+    <div class="text-right">
+        <span>Total results:</span>
+        <span th:text="${totalResults}"></span>
+    </div>
+
+    <table class="table">
+        <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Description</th>
+            <th></th>
+        </tr>
+        <tr th:each="article : ${articleList}">
+            <td>
+                <img th:src="${article.getUrlToImage()}" style="max-width:250px">
+            </td>
+            <td>
+                <a th:href="${article.getUrl()}" th:text="${article.getTitle()}">Title unknown</a>
+            </td>
+            <td th:text="${article.getAuthor()}">Author unknown</td>
+            <td th:text="${article.getDescription()}" style="min-width:500px">No description available</td>
+        </tr>
+    </table>
+
+</div>
+
+</body>
+
+</html>
